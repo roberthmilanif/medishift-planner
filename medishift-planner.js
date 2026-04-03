@@ -3,7 +3,7 @@
 
 // Configuration
 // Keep the same Google Apps Script URL as the existing deployment.
-const API_URL = 'https://script.google.com/macros/s/AKfycbz3frobNnDkDpZuuebfjL4yIFtqrpolHyBmMC9RYsydRCJGWlLllW9Wa6s8t2yfyEQ3/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbxOVPojSObkPESE9iWsOrMUV0gE3cNIPlH8bmJH8P-EqA5xBAR7Weo6by5IBA8o2ZdbNg/exec';
 
 // State
 let allPatients = [];
