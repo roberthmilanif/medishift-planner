@@ -443,7 +443,7 @@ function calculateAntibioticDays(startDate) {
 
 // Utility Functions
 function generateId() {
-    return 'pat_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    return 'pat_' + Date.now() + '_' + Math.random().toString(36).substring(2, 11);
 }
 
 function getPriorityClass(priority) {

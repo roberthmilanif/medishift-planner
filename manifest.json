@@ -1,0 +1,10 @@
+{
+  "name": "MediShift Planner",
+  "short_name": "MediShift",
+  "description": "Sistema de passagem de plantão para UTI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#1e88e5",
+  "icons": []
+}
