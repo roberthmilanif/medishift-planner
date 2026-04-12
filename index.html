@@ -43,21 +43,115 @@
             </div>
         </header>
 
-        <!-- Loading State -->
-        <div id="loadingState" class="loading-state">
-            <div class="loading-spinner"></div>
-            <p>Carregando pacientes...</p>
-        </div>
-
-        <!-- Empty State -->
-        <div id="emptyState" class="empty-state" style="display: none;">
-            <i class="fas fa-bed fa-3x"></i>
-            <h3>Nenhum paciente encontrado</h3>
-            <p>Adicione o primeiro paciente para começar</p>
-        </div>
+        <!-- Nav Tabs -->
+        <nav class="main-tabs">
+            <button class="main-tab-btn active" data-tab="pacientes">
+                <i class="fas fa-bed"></i> Pacientes
+            </button>
+            <button class="main-tab-btn" data-tab="calculadoras">
+                <i class="fas fa-calculator"></i> Calculadoras
+            </button>
+        </nav>
 
         <!-- Patients Grid -->
-        <div id="patientsGrid" class="patients-grid"></div>
+        <div id="tab-pacientes" class="tab-content active">
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state">
+                <div class="loading-spinner"></div>
+                <p>Carregando pacientes...</p>
+            </div>
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <i class="fas fa-bed fa-3x"></i>
+                <h3>Nenhum paciente encontrado</h3>
+                <p>Adicione o primeiro paciente para começar</p>
+            </div>
+            <div id="patientsGrid" class="patients-grid"></div>
+        </div>
+
+        <!-- Calculadoras Tab -->
+        <div id="tab-calculadoras" class="tab-content" style="display:none;">
+            <div class="calcs-container">
+
+                <!-- Tabs das calculadoras -->
+                <div class="calc-tabs">
+                    <button class="calc-tab-btn active" data-calc="sofa">
+                        <i class="fas fa-lungs"></i>
+                        <span>SOFA</span>
+                    </button>
+                    <button class="calc-tab-btn" data-calc="cg">
+                        <i class="fas fa-kidneys"></i>
+                        <span>Cockroft-Gault</span>
+                    </button>
+                    <button class="calc-tab-btn" data-calc="glasgow">
+                        <i class="fas fa-brain"></i>
+                        <span>Glasgow</span>
+                    </button>
+                    <button class="calc-tab-btn" data-calc="rass">
+                        <i class="fas fa-bed"></i>
+                        <span>RASS</span>
+                    </button>
+                </div>
+
+                <!-- SOFA -->
+                <div class="calc-pane active" id="calc-pane-sofa">
+                    <div class="calc-card">
+                        <div class="calc-card-header">
+                            <div>
+                                <h2><i class="fas fa-lungs"></i> Escore SOFA</h2>
+                                <p>Sequential Organ Failure Assessment — avaliação de disfunção orgânica</p>
+                            </div>
+                            <span class="calc-range-badge">0 – 24 pts</span>
+                        </div>
+                        <div id="calc-sofa"></div>
+                    </div>
+                </div>
+
+                <!-- Cockroft-Gault -->
+                <div class="calc-pane" id="calc-pane-cg">
+                    <div class="calc-card">
+                        <div class="calc-card-header">
+                            <div>
+                                <h2><i class="fas fa-filter"></i> Cockroft-Gault</h2>
+                                <p>Clearance de creatinina estimado e estadiamento DRC</p>
+                            </div>
+                            <span class="calc-range-badge">ClCr mL/min</span>
+                        </div>
+                        <div id="calc-cg"></div>
+                    </div>
+                </div>
+
+                <!-- Glasgow -->
+                <div class="calc-pane" id="calc-pane-glasgow">
+                    <div class="calc-card">
+                        <div class="calc-card-header">
+                            <div>
+                                <h2><i class="fas fa-brain"></i> Escala de Coma de Glasgow</h2>
+                                <p>Avaliação do nível de consciência — ocular, verbal e motor</p>
+                            </div>
+                            <span class="calc-range-badge">3 – 15 pts</span>
+                        </div>
+                        <div id="calc-glasgow"></div>
+                    </div>
+                </div>
+
+                <!-- RASS -->
+                <div class="calc-pane" id="calc-pane-rass">
+                    <div class="calc-card">
+                        <div class="calc-card-header">
+                            <div>
+                                <h2><i class="fas fa-moon"></i> Escala RASS</h2>
+                                <p>Richmond Agitation-Sedation Scale — nível de sedação e agitação</p>
+                            </div>
+                            <span class="calc-range-badge">-5 a +4</span>
+                        </div>
+                        <div id="calc-rass"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
     <!-- Patient Modal -->
@@ -149,5 +243,18 @@
     </div>
 
     <script src="medishift-planner.js"></script>
+    <script src="calculadoras.js"></script>
+    <script>
+        // Main tab switching
+        document.querySelectorAll('.main-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+                btn.classList.add('active');
+                const target = document.getElementById('tab-' + btn.dataset.tab);
+                if (target) target.style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html>
